@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sushi_restaurant_app/theme/colors.dart';
 import 'package:sushi_restaurant_app/widgets/button.dart';
 import 'package:sushi_restaurant_app/widgets/food_tile.dart';
-
 import '../models/food.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -86,13 +85,14 @@ class MenuScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: TextField(
               decoration: InputDecoration(
+                hintText: "Search here....",
                 border: OutlineInputBorder(
                   borderSide: const BorderSide(
                     color: Colors.white,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                focusedBorder: OutlineInputBorder(
+                enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
                     color: Colors.white,
                   ),
@@ -142,31 +142,42 @@ class MenuScreen extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  'assets/futomaki.png',
-                  height: 60,
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      "Salomon Eggss",
-                      style: GoogleFonts.dmSerifDisplay(
-                        fontSize: 18,
-                      ),
+                    Image.asset(
+                      'assets/futomaki.png',
+                      height: 60,
                     ),
                     const SizedBox(
-                      height: 10,
+                      width: 20,
                     ),
-                    Text(
-                      "\$21.00",
-                      style: TextStyle(color: Colors.grey[700]),
-                    )
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Salomon Eggss",
+                          style: GoogleFonts.dmSerifDisplay(
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "\$21.00",
+                          style: TextStyle(color: Colors.grey[700]),
+                        )
+                      ],
+                    ),
                   ],
+                ),
+                const Icon(
+                  Icons.favorite_outline,
+                  color: Colors.grey,
+                  size: 28,
                 )
               ],
             ),
