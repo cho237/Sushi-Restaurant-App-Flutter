@@ -1,44 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_restaurant_app/screens/cart.dart';
 import 'package:sushi_restaurant_app/screens/food_details.dart';
 import 'package:sushi_restaurant_app/theme/colors.dart';
 import 'package:sushi_restaurant_app/widgets/button.dart';
 import 'package:sushi_restaurant_app/widgets/food_tile.dart';
-import '../models/food.dart';
+
+import '../models/shop.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<Food> foodMenu = [
-      Food(
-        name: "Sushi",
-        price: "200",
-        imagePath: "assets/sushi-roll.png",
-        rating: "4.5",
-      ),
-      Food(
-        name: "Solomon",
-        price: "25.8",
-        imagePath: "assets/sushi.png",
-        rating: "8",
-      ),
-    ];
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
 
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey[800],
         elevation: 0,
-        leading: Icon(
+        leading: const Icon(
           Icons.menu,
-          color: Colors.grey[900],
         ),
-        title: Text(
+        title: const Text(
           "Tokyo",
-          style: TextStyle(color: Colors.grey[900]),
         ),
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const CartScreen(),
+                    ),
+                  ),
+              icon: const Icon(Icons.shopping_cart))
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:sushi_restaurant_app/models/shop.dart';
 import 'package:sushi_restaurant_app/theme/colors.dart';
 import 'package:sushi_restaurant_app/widgets/button.dart';
 
@@ -29,6 +31,40 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
     setState(() {
       quantityCount++;
     });
+  }
+
+  void addToCart() {
+    if (quantityCount > 0) {
+      final shop = context.read<Shop>();
+
+      shop.addTocart(widget.food, quantityCount);
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: primaryColor,
+          content: const Text(
+            "Successfully Added",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.done,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -85,7 +121,7 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "the best ever sushi in town can be found where ever you are andthe best ever sushi in town can be found where ever you are and how you wish to be served by the best to be done",
+                    "the best ever sushi in town can be found where ever you are andthe best ever sushi in town can be found where ever you are and how you wish to be served by the the best ever sushi in town can be found where ever you are andthe best ever sushi in town can be found where ever you are and how you wish to be served by th best to be done",
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontWeight: FontWeight.bold,
@@ -161,7 +197,10 @@ class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                MyButton(text: "Add To Cart")
+                MyButton(
+                  text: "Add To Cart",
+                  ontap: addToCart,
+                )
               ],
             ),
           )
