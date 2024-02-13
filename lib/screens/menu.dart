@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sushi_restaurant_app/screens/food_details.dart';
 import 'package:sushi_restaurant_app/theme/colors.dart';
 import 'package:sushi_restaurant_app/widgets/button.dart';
 import 'package:sushi_restaurant_app/widgets/food_tile.dart';
@@ -124,6 +125,15 @@ class MenuScreen extends StatelessWidget {
               itemCount: foodMenu.length,
               itemBuilder: (context, index) => FoodTile(
                 food: foodMenu[index],
+                ontap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FoodDetailsScreen(
+                        food: foodMenu[index],
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),

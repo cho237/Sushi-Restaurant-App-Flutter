@@ -4,11 +4,13 @@ import 'package:sushi_restaurant_app/models/food.dart';
 
 class FoodTile extends StatelessWidget {
   final Food food;
-  const FoodTile({super.key, required this.food});
+  final void Function() ontap;
+  const FoodTile({super.key, required this.food, required this.ontap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: ontap,
       child: Container(
         margin: const EdgeInsets.only(left: 25),
         padding: const EdgeInsets.all(25),
